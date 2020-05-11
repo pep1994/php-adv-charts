@@ -7,6 +7,8 @@ $(document).ready(function () {
     success: function (data) {
 
         printLine(data);
+        console.log(moment());
+        
       
     },
     error: function (err) { 
@@ -73,7 +75,6 @@ $(document).ready(function () {
               
               borderWidth: 3
             
-             
           }]
       },
       options: {
@@ -96,8 +97,7 @@ $(document).ready(function () {
           },
           legend: {
             align: 'end'
-            
-          }
+          } 
       }
   });
 
