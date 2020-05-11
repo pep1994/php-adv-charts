@@ -56,7 +56,24 @@ $(document).ready(function () {
                 'rgba(255, 38, 0, 1)',
                 'rgba(216, 34, 83, 1)'
               ],
+              hoverBackgroundColor: [
+                'rgba(255, 255, 255)',
+                'rgba(255, 255, 255)',
+                'rgba(255, 255, 255)',
+                'rgba(255, 255, 255)',
+                'rgba(255, 255, 255)',
+                'rgba(255, 255, 255)',
+                'rgba(255, 255, 255)',
+                'rgba(255, 255, 255)',
+                'rgba(255, 255, 255)',
+                'rgba(255, 255, 255)',
+                'rgba(255, 255, 255)',
+                'rgba(255, 255, 255)'
+              ],
+              
               borderWidth: 3
+            
+             
           }]
       },
       options: {
@@ -66,6 +83,20 @@ $(document).ready(function () {
                       beginAtZero: true
                   }
               }]
+          },
+          animation: {
+            duration: 1500,
+            easing: 'easeInBounce'
+          },
+          title: {
+            display: true,
+            text: "Line",
+            fontSize: 20,
+            lineHeight: 3
+          },
+          legend: {
+            align: 'end'
+            
           }
       }
   });
