@@ -1,28 +1,64 @@
 $(document).ready(function () {
 
-  $.ajax({
-    method: "GET",
-    url: "server.php",
-    dataType: "json",
-    success: function (data) {
+  $('#level-access').val("");
 
-        printLine(data);
-        console.log(data);
+  $('#level-access').change(function () { 
 
-        printPie(data);
+    var level = $('#level-access').val();
 
-        printMultiLine(data);
+    $.ajax({
+      method: "GET",
+      url: "server.php",
+      dataType: "json",
+      data: {
+        level: level
+      },
+      success: function (data) {
+
+        if (level === "guest") {
+
+          printLine(data);
+
+          $('canvas#multi-line').hide();
+          $('canvas#pie').hide();
+
+        } else if (level === "employee"){
+
+          printLine(data);
+
+          printPie(data);
+
+          $('canvas#multi-line').hide();
+          $('canvas#pie').show();
+
+        } else if (level === 'clevel') {
+
+          printLine(data);
+
+          printPie(data);
+
+          printMultiLine(data);
+
+          $('canvas#multi-line').show();
+          $('canvas#pie').show();
+          
+        } 
+
+     
+          console.log(data);
+  
+      },
+      error: function (err) { 
+  
+        console.error(err);
         
-      
-    },
-    error: function (err) { 
-
-      console.error(err);
-      
-     }
+       }
+    });
+  
+    
   });
 
-
+  
 
   function monthsList() { 
 
