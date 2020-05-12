@@ -18,6 +18,13 @@ $(document).ready(function () {
      }
   });
 
+  function monthsList() { 
+
+    moment.locale('it');
+    return moment.months();
+
+   }
+
 
   function printLine(data) {
 
@@ -26,7 +33,7 @@ $(document).ready(function () {
     var myChart = new Chart(ctx, {
       type: 'line',
       data: {
-          labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+          labels: monthsList(),
           datasets: [{
               label: 'Vendite',
               data: data,

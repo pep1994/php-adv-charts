@@ -24,10 +24,11 @@ $(document).ready(function () {
     dataType: "json",
     success: function (data) {
 
-       
+        printPie(data);
         console.log(data);
+        console.log(moment.months());
         
-      
+        
     },
     error: function (err) { 
 
@@ -35,6 +36,15 @@ $(document).ready(function () {
       
      }
   });
+
+  
+
+  function monthsList() { 
+
+    moment.locale('it');
+    return moment.months();
+
+   }
 
 
   function printLine(result) {
@@ -44,7 +54,7 @@ $(document).ready(function () {
     var myChart = new Chart(ctx, {
       type: result.type,
       data: {
-          labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+          labels: monthsList(),
           datasets: [{
               label: 'Vendite',
               data: result.data,
@@ -76,6 +86,7 @@ $(document).ready(function () {
                 'rgba(255, 38, 0, 1)',
                 'rgba(216, 34, 83, 1)'
               ],
+              
               hoverBackgroundColor: [
                 'rgba(255, 255, 255)',
                 'rgba(255, 255, 255)',
@@ -126,59 +137,35 @@ $(document).ready(function () {
 
 function printPie(result) {
 
-  var ctx = $('#line');
+  var ctx = $('#pie');
 
   var myChart = new Chart(ctx, {
     type: result.type,
     data: {
-        labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+        labels: result.labels,
         datasets: [{
             label: 'Vendite',
             data: result.data,
             backgroundColor: [
-              'rgba(150, 33, 146, .7)',
-              'rgba(82, 40, 204, 1)',
-              'rgba(4, 51, 255, 1)',
-              'rgba(0, 146, 146, 1)',
-              'rgba(0, 249, 0, 1)',
-              'rgba(202, 250, 0, 1)',
               'rgba(255, 251, 0, 1)',
               'rgba(255, 199, 0, 1)',
               'rgba(255, 147, 0, 1)',
-              'rgba(255, 80, 0, 1)',
-              'rgba(255, 38, 0, 1)',
-              'rgba(216, 34, 83, 1)'
+              'rgba(255, 80, 0, 1)'
             ],
             borderColor: [
-              'rgba(150, 33, 146, 1)',
-              'rgba(82, 40, 204, 1)',
-              'rgba(4, 51, 255, 1)',
-              'rgba(0, 146, 146, 1)',
-              'rgba(0, 249, 0, 1)',
-              'rgba(202, 250, 0, 1)',
               'rgba(255, 251, 0, 1)',
               'rgba(255, 199, 0, 1)',
               'rgba(255, 147, 0, 1)',
-              'rgba(255, 80, 0, 1)',
-              'rgba(255, 38, 0, 1)',
-              'rgba(216, 34, 83, 1)'
+              'rgba(255, 80, 0, 1)'
             ],
             hoverBackgroundColor: [
-              'rgba(255, 255, 255)',
-              'rgba(255, 255, 255)',
-              'rgba(255, 255, 255)',
-              'rgba(255, 255, 255)',
-              'rgba(255, 255, 255)',
-              'rgba(255, 255, 255)',
-              'rgba(255, 255, 255)',
-              'rgba(255, 255, 255)',
               'rgba(255, 255, 255)',
               'rgba(255, 255, 255)',
               'rgba(255, 255, 255)',
               'rgba(255, 255, 255)'
             ],
             
-            borderWidth: 3
+            borderWidth: 1
           
         }]
     },
@@ -190,13 +177,10 @@ function printPie(result) {
                 }
             }]
         },
-        animation: {
-          duration: 1500,
-          easing: 'easeInBounce'
-        },
+        
         title: {
           display: true,
-          text: "Line",
+          text: "Pie",
           fontSize: 20,
           lineHeight: 3
         },
@@ -207,7 +191,5 @@ function printPie(result) {
 });
 
 }
-
-
-  
+ 
 });

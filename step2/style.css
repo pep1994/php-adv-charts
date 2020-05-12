@@ -8,3 +8,7 @@
   max-width: 900px;
   margin: 100px auto;
 }
+
+canvas {
+  margin-bottom: 50px;
+}
