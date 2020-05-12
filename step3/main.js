@@ -141,7 +141,7 @@ $(document).ready(function () {
           },
           title: {
             display: true,
-            text: "Line",
+            text: "Vendite",
             fontSize: 20,
             lineHeight: 3
           },
@@ -165,18 +165,17 @@ function printPie(result) {
     data: {
         labels: result.fatturato_by_agent.labels,
         datasets: [{
-            label: 'Vendite',
             data: result.fatturato_by_agent.data,
             backgroundColor: [
-              'rgba(255, 251, 0, 1)',
-              'rgba(255, 199, 0, 1)',
-              'rgba(255, 147, 0, 1)',
-              'rgba(255, 80, 0, 1)'
+              'rgba(255, 251, 0, .8)',
+              'rgba(0, 249, 0, .8)',
+              'rgba(4, 51, 255, .8)',
+              'rgba(255, 80, 0, .8)'
             ],
             borderColor: [
               'rgba(255, 251, 0, 1)',
-              'rgba(255, 199, 0, 1)',
-              'rgba(255, 147, 0, 1)',
+              'rgba(0, 249, 0, 1)',
+              'rgba(4, 51, 255, 1)',
               'rgba(255, 80, 0, 1)'
             ],
             hoverBackgroundColor: [
@@ -201,7 +200,7 @@ function printPie(result) {
         
         title: {
           display: true,
-          text: "Pie",
+          text: "Fatturato Agenti",
           fontSize: 20,
           lineHeight: 3
         },
@@ -345,7 +344,7 @@ function printMultiLine(result) {
         
         title: {
           display: true,
-          text: "Multi-line",
+          text: "Vendite Team",
           fontSize: 20,
           lineHeight: 3
         },

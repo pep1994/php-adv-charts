@@ -12,3 +12,9 @@
 canvas {
   margin-bottom: 50px;
 }
+
+#level-access {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
