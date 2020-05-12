@@ -11,9 +11,8 @@
   $fatturato_pie = $graphs['fatturato_by_agent']['data'];
 
   $team_line = $graphs['team_efficiency']['data'];
-  
-  if ($access === 'guest') {
 
+  if ($access === 'guest') {
 
     $result = [
       fatturato => $fatturato_line
@@ -74,6 +73,25 @@
    
         }
   }
+
+  // foreach ($graphs as $key => $graph) {
+
+  //   $data = $graph['data'];
+    
+  //   foreach ($data as $key => $value) {
+  //     $labels[] = $key;
+  //     $number[] = $value;
+  //   }
+
+  //   $risultato[] = [
+      
+  //     data => [
+  //       labels => $labels,
+  //       data => $number
+  //     ]
+
+  //   ];
+  // }
 
 
 

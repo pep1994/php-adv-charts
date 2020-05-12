@@ -1,8 +1,15 @@
-$(document).ready(function () {
+$(document).ready(init);
 
-  $('#level-access').val("");
+  
+  function init () { 
 
-  $('#level-access').change(function () { 
+    $('#level-access').val("");
+    $('#level-access').change(ajaxCall);
+
+   }
+
+
+  function ajaxCall () { 
 
     var level = $('#level-access').val();
 
@@ -18,33 +25,26 @@ $(document).ready(function () {
         if (level === "guest") {
 
           printLine(data);
-
-          $('canvas#multi-line').hide();
-          $('canvas#pie').hide();
+          hideElement('canvas#multi-line');
+          hideElement('canvas#pie');
 
         } else if (level === "employee"){
 
           printLine(data);
-
           printPie(data);
-
-          $('canvas#multi-line').hide();
-          $('canvas#pie').show();
+          hideElement('canvas#multi-line');
+          showElement('canvas#pie');
 
         } else if (level === 'clevel') {
 
           printLine(data);
-
           printPie(data);
-
           printMultiLine(data);
-
-          $('canvas#multi-line').show();
-          $('canvas#pie').show();
+          showElement('canvas#pie');
+          showElement('canvas#multi-line');
           
         } 
 
-     
           console.log(data);
   
       },
@@ -54,9 +54,21 @@ $(document).ready(function () {
         
        }
     });
-  
-    
-  });
+
+   }
+
+
+   function hideElement (element) {  
+
+    $(element).hide();
+
+   }
+
+   function showElement(element) {
+
+    $(element).show();
+
+  }
 
   
 
@@ -293,45 +305,45 @@ function printMultiLine(result) {
          
           borderWidth: 3
         
-      },
+        },
 
-      {
-        label: 'Team3',
-        data: result.team_efficiency.data[2],
-        backgroundColor: [
-          'rgba(0, 249, 0, 0)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)'
-        ],
-        borderColor: [
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)',
-          'rgba(0, 249, 0, 1)'
-        ],
+        {
+          label: 'Team3',
+          data: result.team_efficiency.data[2],
+          backgroundColor: [
+            'rgba(0, 249, 0, 0)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)'
+          ],
+          borderColor: [
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)',
+            'rgba(0, 249, 0, 1)'
+          ],
+          
+          borderWidth: 3
         
-        borderWidth: 3
+        }
       
-    }
-      
-      ]
+        ]
     },
     options: {
         scales: {
@@ -352,8 +364,8 @@ function printMultiLine(result) {
           align: 'end'
         } 
     }
-});
 
-}
+    });
+
+  }
  
-});
