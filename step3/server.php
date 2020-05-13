@@ -74,26 +74,6 @@
         }
   }
 
-  // foreach ($graphs as $key => $graph) {
-
-  //   $data = $graph['data'];
-    
-  //   foreach ($data as $key => $value) {
-  //     $labels[] = $key;
-  //     $number[] = $value;
-  //   }
-
-  //   $risultato[] = [
-      
-  //     data => [
-  //       labels => $labels,
-  //       data => $number
-  //     ]
-
-  //   ];
-  // }
-
-
 
   echo json_encode($result);
 

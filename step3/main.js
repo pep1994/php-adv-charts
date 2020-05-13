@@ -8,10 +8,14 @@ $(document).ready(init);
 
    }
 
+   var listaGraficiPopolata = [];
+
 
   function ajaxCall () { 
 
     var level = $('#level-access').val();
+
+    
 
     $.ajax({
       method: "GET",
@@ -23,6 +27,14 @@ $(document).ready(init);
       success: function (data) {
 
         console.log(data);
+
+        for(var i = 0; i < listaGraficiPopolata.length; i++) {
+
+          listaGraficiPopolata[i].destroy();
+
+        }
+
+        listaGraficiPopolata = [];
 
         for (var key in data) {
 
@@ -40,6 +52,15 @@ $(document).ready(init);
     
    }
 
+   function generateRandomNumber (max, min) {
+
+      return Math.floor(Math.random() * (max - min) + min) ;
+     
+   }
+
+   console.log(generateRandomNumber(5, 0));
+   
+
 
    function printGraphs(data, key) {
 
@@ -54,118 +75,41 @@ $(document).ready(init);
        if (data[key]['team']) {
 
          ctx = $('#multi-line');
+
+         var dataset = [];
+         var team;
+
+         for (var i = 0; i < data[key]['team'].length; i++) {
+
+            var arrayLineColor = [];
+            var arrayLineBorderColor = [];
+
+            var colorLine = 'rgba(' + generateRandomNumber(256, 0) + ", " + generateRandomNumber(256, 0) + ", " + generateRandomNumber(256, 0) + ", " + 0 + ')';
+
+            arrayLineColor.push(colorLine);
+
+            colorLine = 'rgba(' + generateRandomNumber(256, 0) + ", " + generateRandomNumber(256, 0) + ", " + generateRandomNumber(256, 0) + ", " + 1 + ')';
+
+            arrayLineBorderColor.push(colorLine);
+
+            for (var index = 0; index < 11; index++) {
+              
+              arrayLineColor.push(colorLine);
+              arrayLineBorderColor.push(colorLine);
+            }
+
+             team = {
+               label: data[key]['team'][i],
+               data:  data[key]['data'][i],
+               backgroundColor: arrayLineColor,
+               borderColor: arrayLineBorderColor,
+               borderWidth: 3
+             };
+
+             dataset.push(team);
+             console.log(dataset);
+         }
          
-         var dataset = [
-           {
-           label: 'Team1',
-           data: data[key].data[0],
-           backgroundColor: [
-             'rgba(255, 80, 0, 0)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)'
-           ],
-           borderColor: [
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)',
-             'rgba(255, 80, 0, 1)'
-           ],
-           
-           borderWidth: 3
-
-           },
-
-           {
-             label: 'Team2',
-             data: data[key].data[1],
-             backgroundColor: [
-               'rgba(4, 51, 255, 0)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)'
-             ],
-             borderColor: [
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)',
-               'rgba(4, 51, 255, 1)'
-             ],
-             
-             borderWidth: 3
-           
-           },
- 
-           {
-             label: 'Team3',
-             data: data[key].data[2],
-             backgroundColor: [
-               'rgba(0, 249, 0, 0)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)'
-             ],
-             borderColor: [
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)',
-               'rgba(0, 249, 0, 1)'
-             ],
-             
-             borderWidth: 3
-           
-           }
-       
-         ];
-
        } else {
 
            dataset = [{
@@ -222,30 +166,33 @@ $(document).ready(init);
 
     } else {
 
+      var arrayBackgroundColor = [];
+      var arrayBorderColor = [];
+      var arrayHoverColor = [];
+     
+        for (var j = 0; j < data[key]['labels'].length; j++) {
+        
+           var colorElement = 'rgba(' + generateRandomNumber(256, 0) + ", " + generateRandomNumber(256, 0) + ", " + generateRandomNumber(256, 0) + ", " + 1 + ')';
+           var hoverColorElement = 'rgb(255, 255, 255)';
+           arrayBackgroundColor.push(colorElement);
+           arrayBorderColor.push(colorElement);
+           arrayHoverColor.push(hoverColorElement);
+
+        }
+
+        console.log(arrayBackgroundColor);
+        
          dataset = [{
-           data: data[key].data,
-           backgroundColor: [
-             'rgba(255, 251, 0, .8)',
-             'rgba(0, 249, 0, .8)',
-             'rgba(4, 51, 255, .8)',
-             'rgba(255, 80, 0, .8)'
-           ],
-           borderColor: [
-             'rgba(255, 251, 0, 1)',
-             'rgba(0, 249, 0, 1)',
-             'rgba(4, 51, 255, 1)',
-             'rgba(255, 80, 0, 1)'
-           ],
-           hoverBackgroundColor: [
-             'rgba(255, 255, 255)',
-             'rgba(255, 255, 255)',
-             'rgba(255, 255, 255)',
-             'rgba(255, 255, 255)'
-           ],
            
+           data: data[key].data,
+           backgroundColor: arrayBackgroundColor,
+           borderColor: arrayBorderColor,
+           hoverBackgroundColor: arrayHoverColor,
            borderWidth: 1
          
        }];
+
+       console.log(dataset);
 
      }
 
@@ -281,9 +228,11 @@ $(document).ready(init);
      }
    });
 
+   listaGraficiPopolata.push(myChart);
+
   }
 
-  
+
   function monthsList() { 
 
     moment.locale('it');
