@@ -24,22 +24,22 @@ $(document).ready(init);
 
         if (level === "guest") {
 
-          printLine(data);
+          printLine(data.fatturato);
           hideElement('canvas#multi-line');
           hideElement('canvas#pie');
 
         } else if (level === "employee"){
 
-          printLine(data);
-          printPie(data);
+          printLine(data.fatturato);
+          printPie(data.fatturato_by_agent);
           hideElement('canvas#multi-line');
           showElement('canvas#pie');
 
         } else if (level === 'clevel') {
 
-          printLine(data);
-          printPie(data);
-          printMultiLine(data);
+          printLine(data.fatturato);
+          printPie(data.fatturato_by_agent);
+          printMultiLine(data.team_efficiency);
           showElement('canvas#pie');
           showElement('canvas#multi-line');
           
@@ -85,12 +85,12 @@ $(document).ready(init);
     var ctx = $('#line');
   
     var myChart = new Chart(ctx, {
-      type: result.fatturato.type,
+      type: result.type,
       data: {
           labels: monthsList(),
           datasets: [{
               label: 'Vendite',
-              data: result.fatturato.data,
+              data: result.data,
               backgroundColor: [
                 'rgba(150, 33, 146, .7)',
                 'rgba(82, 40, 204, 1)',
@@ -173,11 +173,11 @@ function printPie(result) {
   var ctx = $('#pie');
 
   var myChart = new Chart(ctx, {
-    type: result.fatturato_by_agent.type,
+    type: result.type,
     data: {
-        labels: result.fatturato_by_agent.labels,
+        labels: result.labels,
         datasets: [{
-            data: result.fatturato_by_agent.data,
+            data: result.data,
             backgroundColor: [
               'rgba(255, 251, 0, .8)',
               'rgba(0, 249, 0, .8)',
@@ -230,12 +230,12 @@ function printMultiLine(result) {
   var ctx = $('#multi-line');
 
   var myChart = new Chart(ctx, {
-    type: result.team_efficiency.type,
+    type: result.type,
     data: {
         labels: monthsList(),
         datasets: [{
             label: 'Team1',
-            data: result.team_efficiency.data[0],
+            data: result.data[0],
             backgroundColor: [
               'rgba(255, 80, 0, 0)',
               'rgba(255, 80, 0, 1)',
@@ -272,7 +272,7 @@ function printMultiLine(result) {
 
         {
           label: 'Team2',
-          data: result.team_efficiency.data[1],
+          data: result.data[1],
           backgroundColor: [
             'rgba(4, 51, 255, 0)',
             'rgba(4, 51, 255, 1)',
@@ -309,7 +309,7 @@ function printMultiLine(result) {
 
         {
           label: 'Team3',
-          data: result.team_efficiency.data[2],
+          data: result.data[2],
           backgroundColor: [
             'rgba(0, 249, 0, 0)',
             'rgba(0, 249, 0, 1)',
