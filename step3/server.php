@@ -51,7 +51,7 @@
         ],
         team_efficiency => [
           type => $graphs['team_efficiency']['type'],
-          labels => [],
+          team => [],
           data => [],
           access => 'clevel'
         ]
@@ -68,7 +68,7 @@
 
         foreach ($team_line as $key => $value) {
 
-          $result['team_efficiency']['labels'][] = $key;
+          $result['team_efficiency']['team'][] = $key;
           $result['team_efficiency']['data'][] = $value;
    
         }
