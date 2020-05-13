@@ -36,11 +36,16 @@ $(document).ready(init);
 
         listaGraficiPopolata = [];
 
-        for (var key in data) {
+        for (let index = 0; index < data.length; index++) {
 
-           printGraphs(data, key);
+          for (var key in data[index]) {
 
+            printGraphs(data[index], key);
+ 
+         }
         }
+
+        
      
       },
       error: function (err) { 
